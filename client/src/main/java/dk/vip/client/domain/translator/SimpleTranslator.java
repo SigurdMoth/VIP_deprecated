@@ -14,13 +14,13 @@ public class SimpleTranslator implements ITranslator {
 
         String[] splitQuery = query.split(" ");
         String[] splitParameter = query.split(" -");
-
+        // should be a thrown error that can be handled.
         for (int i = 1; i < splitParameter.length; i++) {
             String identifier = splitParameter[i].substring(0, 1);
             String value = splitParameter[i].substring(2);
             if (!splitParameter[i].substring(1, 2).equals(" ")) {
-                logger.log(Level.WARNING, "A parameter was excluded because of a syntax error"); //should be a thrown error that can be handled.
-                continue; //skip add.
+                logger.log(Level.WARNING, "A parameter was excluded because of a syntax error");
+                continue; // skip add.
             }
             parameters.add(new Parameter(identifier, value));
         }

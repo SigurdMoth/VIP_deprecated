@@ -6,6 +6,8 @@ import java.util.logging.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import dk.vip.client.domain.ExpressionConverterJSON;
+import dk.vip.client.domain.IExpressionConverter;
 import dk.vip.client.domain.TailExpressionHandler;
 import dk.vip.client.domain.translator.ITranslator;
 import dk.vip.client.domain.translator.SimpleTranslator;
@@ -20,7 +22,8 @@ public class ClientApplication {
 	public static void main(String[] args) {
 		// SpringApplication.run(ClientApplication.class, args);
 		ITranslator translator = new SimpleTranslator();
-		HeadExpressionHandler expressionhandler = new TailExpressionHandler(translator);
+		IExpressionConverter expressionConverter = new ExpressionConverterJSON();
+		HeadExpressionHandler expressionhandler = new TailExpressionHandler(translator, expressionConverter);
 		IPromptReader reader = new PromptScanner(expressionhandler);
 		reader.start();
 	}
