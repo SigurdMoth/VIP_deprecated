@@ -17,10 +17,15 @@ public class ClientApplication {
 		ITranslator translator = new SimpleTranslator();
 		IExpressionConverter expressionConverter = new ExpressionConverterJSON();
 		HeadTransmissionHandler transmissionHandler = new TailTransmissionHandler();
-		HeadExpressionHandler expressionhandler = new TailExpressionHandler(translator, expressionConverter,
+
+		//HeadExpressionHandler expressionHandler = new TailExpressionHandler();
+		// expressionHandler.setStrategy(transmissionHandler);
+		// expressionHandler.setStrategy(expressionConverter);
+		// expressionHandler.setStrategy(translator);
+		HeadExpressionHandler expressionHandler = new TailExpressionHandler(translator, expressionConverter,
 				transmissionHandler);
 
-		IPromptReader reader = new PromptScanner(expressionhandler);
+		IPromptReader reader = new PromptScanner(expressionHandler);
 		reader.start();
 	}
 }

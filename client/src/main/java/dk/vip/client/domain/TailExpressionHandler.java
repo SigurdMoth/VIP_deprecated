@@ -36,4 +36,16 @@ public class TailExpressionHandler implements HeadExpressionHandler {
         logger.log(Level.INFO, "json import:\n" + importJson);
         return "";
     }
+
+    public void setStrategy(ITranslator translator) {
+        this.translator = translator;
+    }
+
+    public void setStrategy(IExpressionConverter expressionConverter) {
+        this.expressionConverter = expressionConverter;
+    }
+
+    public void setStrategy(HeadTransmissionHandler transmissionHandler) {
+        this.transmissionHandler = transmissionHandler;
+    }
 }
