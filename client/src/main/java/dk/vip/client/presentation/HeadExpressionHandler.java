@@ -3,9 +3,9 @@ package dk.vip.client.presentation;
 public interface HeadExpressionHandler {
     
     /**
-     * Verify expression
+     * Verify expression,
      * JSONify
      * @return
      */
-    String handleExpression();
+    String handleExpression(String inputLine);
 }

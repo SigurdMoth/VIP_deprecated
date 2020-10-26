@@ -5,9 +5,9 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class InputScanner implements InputReader {
+public class PromptScanner implements IPromptReader {
 
-    private Logger logger = Logger.getLogger(InputScanner.class.getName());
+    private Logger logger = Logger.getLogger(PromptScanner.class.getName());
     private boolean isRunning;
     private Scanner scanner = new Scanner(System.in);
 
@@ -33,11 +33,11 @@ public class InputScanner implements InputReader {
 
     private void readLine() {
         if (scanner.hasNextLine()) {
-            String inputLine = scanner.nextLine();
-            if (inputLine.equals("exit")) {
+            String query = scanner.nextLine();
+            if (query.equals("exit")) {
                 isRunning = false;
             }
-            logger.log(Level.INFO, "Testing read msg:" + inputLine);
+            logger.log(Level.INFO, "Testing read msg:" + query);
         }
     }
 

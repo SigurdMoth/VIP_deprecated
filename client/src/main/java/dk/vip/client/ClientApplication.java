@@ -6,8 +6,8 @@ import java.util.logging.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import dk.vip.client.presentation.InputReader;
-import dk.vip.client.presentation.InputScanner;
+import dk.vip.client.presentation.IPromptReader;
+import dk.vip.client.presentation.PromptScanner;
 
 @SpringBootApplication
 public class ClientApplication {
@@ -15,7 +15,7 @@ public class ClientApplication {
 
 	public static void main(String[] args) {
 		// SpringApplication.run(ClientApplication.class, args);
-		InputReader reader = new InputScanner();
+		IPromptReader reader = new PromptScanner();
 		reader.start();
 		logger.log(Level.INFO, "Thread excecuted.");
 	}
