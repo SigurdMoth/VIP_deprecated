@@ -1,11 +1,5 @@
 package dk.vip.client;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import dk.vip.client.domain.ExpressionConverterJSON;
 import dk.vip.client.domain.HeadTransmissionHandler;
 import dk.vip.client.domain.IExpressionConverter;
@@ -17,17 +11,15 @@ import dk.vip.client.presentation.HeadExpressionHandler;
 import dk.vip.client.presentation.IPromptReader;
 import dk.vip.client.presentation.PromptScanner;
 
-@SpringBootApplication
 public class ClientApplication {
-	private static Logger logger = Logger.getLogger(ClientApplication.class.getName());
 
 	public static void main(String[] args) {
-		// SpringApplication.run(ClientApplication.class, args);
 		ITranslator translator = new SimpleTranslator();
 		IExpressionConverter expressionConverter = new ExpressionConverterJSON();
 		HeadTransmissionHandler transmissionHandler = new TailTransmissionHandler();
-		HeadExpressionHandler expressionhandler = new TailExpressionHandler(translator, expressionConverter, transmissionHandler);
-		
+		HeadExpressionHandler expressionhandler = new TailExpressionHandler(translator, expressionConverter,
+				transmissionHandler);
+
 		IPromptReader reader = new PromptScanner(expressionhandler);
 		reader.start();
 	}

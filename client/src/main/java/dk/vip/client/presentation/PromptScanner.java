@@ -1,13 +1,10 @@
 package dk.vip.client.presentation;
 
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class PromptScanner implements IPromptReader {
 
     HeadExpressionHandler expressionHandler;
-    private Logger logger = Logger.getLogger(PromptScanner.class.getName());
     private boolean isRunning;
     private Scanner scanner = new Scanner(System.in);
 
