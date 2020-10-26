@@ -6,6 +6,10 @@ import java.util.logging.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import dk.vip.client.domain.TailExpressionHandler;
+import dk.vip.client.domain.translator.ITranslator;
+import dk.vip.client.domain.translator.SimpleTranslator;
+import dk.vip.client.presentation.HeadExpressionHandler;
 import dk.vip.client.presentation.IPromptReader;
 import dk.vip.client.presentation.PromptScanner;
 
@@ -15,8 +19,9 @@ public class ClientApplication {
 
 	public static void main(String[] args) {
 		// SpringApplication.run(ClientApplication.class, args);
-		IPromptReader reader = new PromptScanner();
+		ITranslator translator = new SimpleTranslator();
+		HeadExpressionHandler expressionhandler = new TailExpressionHandler(translator);
+		IPromptReader reader = new PromptScanner(expressionhandler);
 		reader.start();
-		logger.log(Level.INFO, "Thread excecuted.");
 	}
 }

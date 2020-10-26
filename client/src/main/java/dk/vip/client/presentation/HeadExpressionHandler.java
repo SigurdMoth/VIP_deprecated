@@ -7,5 +7,5 @@ public interface HeadExpressionHandler {
      * JSONify
      * @return
      */
-    String handleExpression(String inputLine);
+    String handleExpression(String query);
 }

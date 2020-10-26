@@ -12,18 +12,25 @@ public class Expression {
         this.parameters = parameters;
     }
 
-    class Parameter {
-        String parameter, value;
-        boolean hasValue;
+    public String getProtocol() {
+        return this.protocol;
+    }
 
-        public Parameter(String parameter) {
-            this.parameter = parameter;
-        }
+    public String getCommand() {
+        return this.command;
+    }
 
-        public Parameter(String parameter, String value) {
-            this.parameter = parameter;
-            this.value = value;
-            hasValue = true;
+    public List<Parameter> getParameters() {
+        return this.parameters;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("Protocol: %5s, Command: %5s", protocol, command));
+        for (Parameter parameter : parameters) {
+            sb.append(String.format("\n\t -%s", parameter));
         }
+        return sb.toString();
     }
 }
