@@ -11,11 +11,14 @@ public class TailExpressionHandler implements HeadExpressionHandler {
 
     private ITranslator translator;
     private IExpressionConverter expressionConverter;
+    private HeadTransmissionHandler transmissionHandler;
     private Logger logger = Logger.getLogger(TailExpressionHandler.class.getName());
 
-    public TailExpressionHandler(ITranslator translator, IExpressionConverter expressionConverter) {
+    public TailExpressionHandler(ITranslator translator, IExpressionConverter expressionConverter,
+            HeadTransmissionHandler transmissionHandler) {
         this.translator = translator;
         this.expressionConverter = expressionConverter;
+        this.transmissionHandler = transmissionHandler;
     }
 
     @Override
@@ -26,8 +29,11 @@ public class TailExpressionHandler implements HeadExpressionHandler {
         // Verify expression
 
         // Convert expression
-        String json = expressionConverter.convert(expression);
-        logger.log(Level.INFO, "json:\n" + json);
+        String exportJson = expressionConverter.convert(expression);
+        logger.log(Level.INFO, "json export:\n" + exportJson);
+        // Transmit expression
+        String importJson = transmissionHandler.transmit(exportJson);
+        logger.log(Level.INFO, "json import:\n" + importJson);
         return "";
     }
 }
