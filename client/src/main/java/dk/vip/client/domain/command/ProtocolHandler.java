@@ -7,9 +7,9 @@ import dk.vip.client.domain.translator.Expression;
 public class ProtocolHandler {
 
     private final String protocol;
-    private final Map<String, IExecution> commands;
+    private final Map<String, IExecuteExpression> commands;
 
-    public ProtocolHandler(String protocol, Map<String, IExecution> commands) {
+    public ProtocolHandler(String protocol, Map<String, IExecuteExpression> commands) {
         this.protocol = protocol;
         this.commands = commands;
     }
@@ -25,7 +25,7 @@ public class ProtocolHandler {
         return protocol;
     }
 
-    public Map<String, IExecution> getCommands() {
+    public Map<String, IExecuteExpression> getCommands() {
         return commands;
     }
 

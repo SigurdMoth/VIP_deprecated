@@ -23,6 +23,14 @@ public class Expression {
     public List<Parameter> getParameters() {
         return this.parameters;
     }
+    public Parameter getParameterByIdentifier (String identifier){
+        for (Parameter parameter : parameters) {
+            if (parameter.getIdentifier().equals(identifier)){
+                return parameter;
+            }
+        }
+        return null;
+    }
 
     @Override
     public String toString() {
