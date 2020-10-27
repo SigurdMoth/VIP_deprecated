@@ -20,7 +20,7 @@ public class ClientApplication {
 		IExpressionConverter expressionConverter = new ExpressionConverterJSON();
 		HeadTransmissionHandler transmissionHandler = new TailTransmissionHandler();
 		Configurator.getInstance().setStrategy(new TailConfigurationFileHandler());
-
+		Configurator.getInstance().init();
 		//HeadExpressionHandler expressionHandler = new TailExpressionHandler();
 		// expressionHandler.setStrategy(transmissionHandler);
 		// expressionHandler.setStrategy(expressionConverter);

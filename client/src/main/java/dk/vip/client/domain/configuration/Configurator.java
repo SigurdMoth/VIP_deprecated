@@ -13,6 +13,11 @@ public class Configurator {
     private Configurator() {
         configurationModels = new HashMap<>();
         configurationModels.put(NetworkConfiguration.class, new NetworkConfiguration("cfgNetwork.json"));
+
+    }
+
+    public void init() {
+        loadAllConfigs();
     }
 
     public static Configurator getInstance() {
@@ -26,8 +31,20 @@ public class Configurator {
         fileHandler.save(configurationModels.get(config));
     }
 
-    public ConfigurationModel loadConfig(Class config) {
-        return fileHandler.load(configurationModels.get(config));
+    public <T extends ConfigurationModel> T loadConfig(Class<T> config) {
+        return fileHandler.load(config, configurationModels.get(config).getPath());
+    }
+
+    public void loadAllConfigs() {
+        ConfigurationModel cm = loadConfig(NetworkConfiguration.class);
+        if (cm != null) {
+            configurationModels.put(NetworkConfiguration.class, cm);
+        }
+
+        configurationModels.keySet().iterator().forEachRemaining(c -> {
+
+        });
+        System.out.println(cm);
     }
 
     public void setStrategy(HeadConfigurationFileHandler fileHandler) {

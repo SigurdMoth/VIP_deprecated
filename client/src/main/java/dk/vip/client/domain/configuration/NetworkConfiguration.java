@@ -28,4 +28,8 @@ public class NetworkConfiguration extends ConfigurationModel {
     // to json
 
     // send to persistence and save to file
+    @Override
+    public String toString(){
+        return "NetworkConfiguration: node=" + node + "\t network=" + network;
+    }
 }
