@@ -5,13 +5,13 @@ import java.io.FileWriter;
 
 import com.google.gson.Gson;
 
-import dk.vip.client.domain.configuration.Configuration;
+import dk.vip.client.domain.configuration.ConfigurationModel;
 import dk.vip.client.domain.configuration.HeadFileHandler;
 
 public class TailFileHandler implements HeadFileHandler {
 
     @Override
-    public boolean save(Configuration config) {
+    public boolean save(ConfigurationModel config) {
         Gson gson = new Gson();
         String json = gson.toJson(config);
 
@@ -26,7 +26,7 @@ public class TailFileHandler implements HeadFileHandler {
     }
 
     @Override
-    public Configuration load(Configuration config) {
+    public ConfigurationModel load(ConfigurationModel config) {
         return null;
     }
 }

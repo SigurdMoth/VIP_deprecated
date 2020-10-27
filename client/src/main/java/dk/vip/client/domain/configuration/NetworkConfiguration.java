@@ -1,6 +1,6 @@
 package dk.vip.client.domain.configuration;
 
-public class NetworkConfiguration extends Configuration {
+public class NetworkConfiguration extends ConfigurationModel {
 
     private String node;
     private String network;

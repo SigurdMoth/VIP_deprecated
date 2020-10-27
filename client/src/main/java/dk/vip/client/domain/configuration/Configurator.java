@@ -1,9 +1,19 @@
 package dk.vip.client.domain.configuration;
 
-public class Configurator {
+import java.util.HashMap;
+import java.util.Map;
 
+public class Configurator {
+    // singleton makes it easy to retrieve configuration files.
     private static Configurator instance;
     private HeadFileHandler fileHandler;
+    // Configurationmodel = instance of a configuration file
+    private final Map<Class, ConfigurationModel> configurationModels;
+
+    private Configurator() {
+        configurationModels = new HashMap<>();
+        configurationModels.put(NetworkConfiguration.class, new NetworkConfiguration("cfgNetwork.json"));
+    }
 
     public static Configurator getInstance() {
         if (instance == null) {
@@ -12,15 +22,19 @@ public class Configurator {
         return instance;
     }
 
+    public void saveConfig(Class config) {
+        fileHandler.save(configurationModels.get(config));
+    }
+
+    public ConfigurationModel loadConfig(Class config) {
+        return fileHandler.load(configurationModels.get(config));
+    }
+
     public void setStrategy(HeadFileHandler fileHandler) {
         this.fileHandler = fileHandler;
     }
 
-    public void saveConfig(EnumConfig config){
-        fileHandler.save(config.get());
-    }
-
-    public Configuration loadConfig(EnumConfig config){
-        return fileHandler.load(config.get());
+    public <T extends ConfigurationModel> T get(Class<T> classModel) {
+        return (T) configurationModels.get(classModel);
     }
 }

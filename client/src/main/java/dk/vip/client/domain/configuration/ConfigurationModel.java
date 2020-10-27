@@ -1,10 +1,10 @@
 package dk.vip.client.domain.configuration;
 
-public class Configuration {
+public abstract class ConfigurationModel {
     
     private final String path;
 
-    public Configuration(String path) {
+    public ConfigurationModel(String path) {
         this.path = path;
     }
     

@@ -2,7 +2,7 @@ package dk.vip.client.domain.configuration;
 
 public interface HeadFileHandler {
 
-    boolean save(Configuration config);
+    boolean save(ConfigurationModel config);
 
-    Configuration load(Configuration config);
+    ConfigurationModel load(ConfigurationModel config);
 }

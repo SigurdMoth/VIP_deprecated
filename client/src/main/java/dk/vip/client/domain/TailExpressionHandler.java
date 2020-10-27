@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import dk.vip.client.domain.command.CommandHandler;
+import dk.vip.client.domain.command.ProtocolHandler;
 import dk.vip.client.domain.command.IExecution;
 import dk.vip.client.domain.command.executions.SetNetwork;
 import dk.vip.client.domain.translator.Expression;
@@ -36,10 +36,17 @@ public class TailExpressionHandler implements HeadExpressionHandler {
         // Compute expression
         String result = "";
         if (expression.getProtocol().equals("set")) {
-            Map<String, IExecution> commands = new HashMap<>();
-            commands.put("network", new SetNetwork());
-            CommandHandler commandHandler = new CommandHandler("set", commands);
-            result = commandHandler.execute(expression.getCommand(), expression);
+            // map contains commands of a protocol eg: network, SetNetwork
+            // <protocol> <command> <parameters>
+            // set network <parameters>
+            Map<String, IExecution> setCommands = new HashMap<>();
+            setCommands.put("network", new SetNetwork());
+            // commands.put("show", new SetShow());
+            // http get <parameters>
+            // commands.put("get", new HttpGet());
+            // CommandHandler httpCommandHandler = new CommandHandler("http", commands);
+            ProtocolHandler setProtocolHandler = new ProtocolHandler("set", setCommands);
+            result = setProtocolHandler.execute(expression);
         } else {
             // Convert expression
             String exportJson = expressionConverter.convert(expression);
