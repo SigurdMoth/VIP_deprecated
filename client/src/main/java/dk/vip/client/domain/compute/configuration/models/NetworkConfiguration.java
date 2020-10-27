@@ -1,6 +1,6 @@
-package dk.vip.client.domain.configuration.models;
+package dk.vip.client.domain.compute.configuration.models;
 
-import dk.vip.client.domain.configuration.ConfigurationModel;
+import dk.vip.client.domain.compute.configuration.ConfigurationModel;
 
 public class NetworkConfiguration extends ConfigurationModel {
 

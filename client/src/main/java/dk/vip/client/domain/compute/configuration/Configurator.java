@@ -1,10 +1,10 @@
-package dk.vip.client.domain.configuration;
+package dk.vip.client.domain.compute.configuration;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import dk.vip.client.domain.configuration.models.NetworkConfiguration;
-import dk.vip.client.domain.configuration.models.UserConfiguration;
+import dk.vip.client.domain.compute.configuration.models.NetworkConfiguration;
+import dk.vip.client.domain.compute.configuration.models.UserConfiguration;
 
 public class Configurator {
     // singleton makes it easy to retrieve configuration files.

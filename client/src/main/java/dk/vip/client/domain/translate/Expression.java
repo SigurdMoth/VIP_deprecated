@@ -1,4 +1,4 @@
-package dk.vip.client.domain.translator;
+package dk.vip.client.domain.translate;
 
 import java.util.List;
 

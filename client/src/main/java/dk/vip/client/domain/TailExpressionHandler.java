@@ -5,12 +5,14 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import dk.vip.client.domain.command.ProtocolHandler;
-import dk.vip.client.domain.command.IExecuteExpression;
-import dk.vip.client.domain.command.executions.SetNetwork;
-import dk.vip.client.domain.command.executions.SetUser;
-import dk.vip.client.domain.translator.Expression;
-import dk.vip.client.domain.translator.ITranslator;
+import dk.vip.client.domain.compute.command.IExecuteExpression;
+import dk.vip.client.domain.compute.command.ProtocolHandler;
+import dk.vip.client.domain.compute.command.executions.SetNetwork;
+import dk.vip.client.domain.compute.command.executions.SetUser;
+import dk.vip.client.domain.convert.IExpressionConverter;
+import dk.vip.client.domain.translate.Expression;
+import dk.vip.client.domain.translate.ITranslator;
+import dk.vip.client.domain.transmit.HeadTransmissionHandler;
 import dk.vip.client.presentation.HeadExpressionHandler;
 
 public class TailExpressionHandler implements HeadExpressionHandler {
@@ -29,27 +31,22 @@ public class TailExpressionHandler implements HeadExpressionHandler {
 
     @Override
     public String handleExpression(String query) {
-        // Interpret expression
+        // Translate expression
         Expression expression = translator.translate(query);
         logger.log(Level.INFO, "expression:\n" + expression.toString());
         // Verify expression
 
-        // Compute expression
         String result = "";
         if (expression.getProtocol().equals("set")) {
-            // map contains commands of a protocol eg: network, SetNetwork
-            // <protocol> <command> <parameters>
-            // set network <parameters>
+            // Compute expression
             Map<String, IExecuteExpression> setCommands = new HashMap<>();
             setCommands.put("network", new SetNetwork());
             setCommands.put("user", new SetUser());
-            // commands.put("show", new SetShow());
-            // http get <parameters>
-            // commands.put("get", new HttpGet());
-            // CommandHandler httpCommandHandler = new CommandHandler("http", commands);
             ProtocolHandler setProtocolHandler = new ProtocolHandler("set", setCommands);
             result = setProtocolHandler.execute(expression);
         } else {
+            // Package expression
+            
             // Convert expression
             String exportJson = expressionConverter.convert(expression);
             logger.log(Level.INFO, "json export:\n" + exportJson);

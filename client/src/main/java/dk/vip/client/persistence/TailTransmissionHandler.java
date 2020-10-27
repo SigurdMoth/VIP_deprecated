@@ -7,7 +7,7 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse.BodyHandlers;
 
-import dk.vip.client.domain.HeadTransmissionHandler;
+import dk.vip.client.domain.transmit.HeadTransmissionHandler;
 
 public class TailTransmissionHandler implements HeadTransmissionHandler {
 

@@ -1,4 +1,4 @@
-package dk.vip.client.domain.configuration;
+package dk.vip.client.domain.compute.configuration;
 
 public abstract class ConfigurationModel {
     

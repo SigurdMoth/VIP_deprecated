@@ -1,8 +1,8 @@
-package dk.vip.client.domain.command;
+package dk.vip.client.domain.compute.command;
 
 import java.util.Map;
 
-import dk.vip.client.domain.translator.Expression;
+import dk.vip.client.domain.translate.Expression;
 
 public class ProtocolHandler {
 

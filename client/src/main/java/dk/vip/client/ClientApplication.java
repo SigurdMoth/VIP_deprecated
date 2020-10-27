@@ -1,12 +1,12 @@
 package dk.vip.client;
 
-import dk.vip.client.domain.ExpressionConverterJSON;
-import dk.vip.client.domain.HeadTransmissionHandler;
-import dk.vip.client.domain.IExpressionConverter;
 import dk.vip.client.domain.TailExpressionHandler;
-import dk.vip.client.domain.configuration.Configurator;
-import dk.vip.client.domain.translator.ITranslator;
-import dk.vip.client.domain.translator.SimpleTranslator;
+import dk.vip.client.domain.compute.configuration.Configurator;
+import dk.vip.client.domain.convert.ExpressionConverterJSON;
+import dk.vip.client.domain.convert.IExpressionConverter;
+import dk.vip.client.domain.translate.ITranslator;
+import dk.vip.client.domain.translate.SimpleTranslator;
+import dk.vip.client.domain.transmit.HeadTransmissionHandler;
 import dk.vip.client.persistence.TailConfigurationFileHandler;
 import dk.vip.client.persistence.TailTransmissionHandler;
 import dk.vip.client.presentation.HeadExpressionHandler;
@@ -21,10 +21,6 @@ public class ClientApplication {
 		HeadTransmissionHandler transmissionHandler = new TailTransmissionHandler();
 		Configurator.getInstance().setStrategy(new TailConfigurationFileHandler());
 		Configurator.getInstance().init();
-		//HeadExpressionHandler expressionHandler = new TailExpressionHandler();
-		// expressionHandler.setStrategy(transmissionHandler);
-		// expressionHandler.setStrategy(expressionConverter);
-		// expressionHandler.setStrategy(translator);
 		HeadExpressionHandler expressionHandler = new TailExpressionHandler(translator, expressionConverter,
 				transmissionHandler);
 

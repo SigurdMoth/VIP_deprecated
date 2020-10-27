@@ -1,10 +1,10 @@
-package dk.vip.client.domain.command.executions;
+package dk.vip.client.domain.compute.command.executions;
 
-import dk.vip.client.domain.command.IExecuteExpression;
-import dk.vip.client.domain.configuration.Configurator;
-import dk.vip.client.domain.configuration.models.NetworkConfiguration;
-import dk.vip.client.domain.translator.Expression;
-import dk.vip.client.domain.translator.Parameter;
+import dk.vip.client.domain.compute.command.IExecuteExpression;
+import dk.vip.client.domain.compute.configuration.Configurator;
+import dk.vip.client.domain.compute.configuration.models.NetworkConfiguration;
+import dk.vip.client.domain.translate.Expression;
+import dk.vip.client.domain.translate.Parameter;
 
 public class SetNetwork implements IExecuteExpression {
 

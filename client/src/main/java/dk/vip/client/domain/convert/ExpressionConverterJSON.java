@@ -1,7 +1,8 @@
-package dk.vip.client.domain;
+package dk.vip.client.domain.convert;
 
-import dk.vip.client.domain.translator.Expression;
 import com.google.gson.Gson;
+
+import dk.vip.client.domain.translate.Expression;
 
 public class ExpressionConverterJSON implements IExpressionConverter {
 
