@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import dk.vip.client.domain.command.ProtocolHandler;
 import dk.vip.client.domain.command.IExecuteExpression;
 import dk.vip.client.domain.command.executions.SetNetwork;
+import dk.vip.client.domain.command.executions.SetUser;
 import dk.vip.client.domain.translator.Expression;
 import dk.vip.client.domain.translator.ITranslator;
 import dk.vip.client.presentation.HeadExpressionHandler;
@@ -41,6 +42,7 @@ public class TailExpressionHandler implements HeadExpressionHandler {
             // set network <parameters>
             Map<String, IExecuteExpression> setCommands = new HashMap<>();
             setCommands.put("network", new SetNetwork());
+            setCommands.put("user", new SetUser());
             // commands.put("show", new SetShow());
             // http get <parameters>
             // commands.put("get", new HttpGet());

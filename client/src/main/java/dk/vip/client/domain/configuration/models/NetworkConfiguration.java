@@ -1,4 +1,6 @@
-package dk.vip.client.domain.configuration;
+package dk.vip.client.domain.configuration.models;
+
+import dk.vip.client.domain.configuration.ConfigurationModel;
 
 public class NetworkConfiguration extends ConfigurationModel {
 
@@ -25,11 +27,8 @@ public class NetworkConfiguration extends ConfigurationModel {
         this.network = network;
     }
 
-    // to json
-
-    // send to persistence and save to file
     @Override
-    public String toString(){
+    public String toString() {
         return "NetworkConfiguration: node=" + node + "\t network=" + network;
     }
 }

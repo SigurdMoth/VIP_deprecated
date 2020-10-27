@@ -2,7 +2,7 @@ package dk.vip.client.domain.command.executions;
 
 import dk.vip.client.domain.command.IExecuteExpression;
 import dk.vip.client.domain.configuration.Configurator;
-import dk.vip.client.domain.configuration.NetworkConfiguration;
+import dk.vip.client.domain.configuration.models.NetworkConfiguration;
 import dk.vip.client.domain.translator.Expression;
 import dk.vip.client.domain.translator.Parameter;
 

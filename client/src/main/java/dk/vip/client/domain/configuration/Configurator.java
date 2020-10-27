@@ -3,6 +3,9 @@ package dk.vip.client.domain.configuration;
 import java.util.HashMap;
 import java.util.Map;
 
+import dk.vip.client.domain.configuration.models.NetworkConfiguration;
+import dk.vip.client.domain.configuration.models.UserConfiguration;
+
 public class Configurator {
     // singleton makes it easy to retrieve configuration files.
     private static Configurator instance;
@@ -13,7 +16,7 @@ public class Configurator {
     private Configurator() {
         configurationModels = new HashMap<>();
         configurationModels.put(NetworkConfiguration.class, new NetworkConfiguration("cfgNetwork.json"));
-
+        configurationModels.put(UserConfiguration.class, new UserConfiguration("cfgUser.json"));
     }
 
     public void init() {
@@ -36,15 +39,12 @@ public class Configurator {
     }
 
     public void loadAllConfigs() {
-        ConfigurationModel cm = loadConfig(NetworkConfiguration.class);
-        if (cm != null) {
-            configurationModels.put(NetworkConfiguration.class, cm);
+        for (ConfigurationModel oldConfigurationModel : configurationModels.values()) {
+            ConfigurationModel newConfigurationModel = loadConfig(oldConfigurationModel.getClass());
+            if (newConfigurationModel != null) {
+                configurationModels.put(oldConfigurationModel.getClass(), newConfigurationModel);
+            }
         }
-
-        configurationModels.keySet().iterator().forEachRemaining(c -> {
-
-        });
-        System.out.println(cm);
     }
 
     public void setStrategy(HeadConfigurationFileHandler fileHandler) {
