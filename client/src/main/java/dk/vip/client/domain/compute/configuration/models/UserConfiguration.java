@@ -1,8 +1,10 @@
 package dk.vip.client.domain.compute.configuration.models;
 
 import dk.vip.client.domain.compute.configuration.ConfigurationModel;
+import dk.vip.client.domain.wrap.Bundlable;
+import dk.vip.client.domain.wrap.MetaBundle;
 
-public class UserConfiguration extends ConfigurationModel {
+public class UserConfiguration extends ConfigurationModel implements Bundlable {
 
     private String name;
 
@@ -17,8 +19,16 @@ public class UserConfiguration extends ConfigurationModel {
     public void setName(String name) {
         this.name = name;
     }
+
     @Override
-    public String toString(){
+    public String toString() {
         return "name=" + name;
+    }
+
+    @Override
+    public MetaBundle bundle() {
+        MetaBundle metaBundle = new MetaBundle("userbundle");
+        metaBundle.put("name", getName());
+        return metaBundle;
     }
 }

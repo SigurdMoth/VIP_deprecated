@@ -1,8 +1,10 @@
 package dk.vip.client.domain.compute.configuration.models;
 
 import dk.vip.client.domain.compute.configuration.ConfigurationModel;
+import dk.vip.client.domain.wrap.Bundlable;
+import dk.vip.client.domain.wrap.MetaBundle;
 
-public class NetworkConfiguration extends ConfigurationModel {
+public class NetworkConfiguration extends ConfigurationModel implements Bundlable {
 
     private String node;
     private String network;
@@ -30,5 +32,13 @@ public class NetworkConfiguration extends ConfigurationModel {
     @Override
     public String toString() {
         return "NetworkConfiguration: node=" + node + "\t network=" + network;
+    }
+
+    @Override
+    public MetaBundle bundle() {
+        MetaBundle metaBundle = new MetaBundle("networkbundle");
+        metaBundle.put("network", getNetwork());
+        metaBundle.put("node", getNode());
+        return metaBundle;
     }
 }

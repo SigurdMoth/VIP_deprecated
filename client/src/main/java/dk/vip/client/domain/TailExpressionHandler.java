@@ -9,23 +9,28 @@ import dk.vip.client.domain.compute.command.IExecuteExpression;
 import dk.vip.client.domain.compute.command.ProtocolHandler;
 import dk.vip.client.domain.compute.command.executions.SetNetwork;
 import dk.vip.client.domain.compute.command.executions.SetUser;
-import dk.vip.client.domain.convert.IExpressionConverter;
+import dk.vip.client.domain.compute.configuration.Configurator;
+import dk.vip.client.domain.compute.configuration.models.NetworkConfiguration;
+import dk.vip.client.domain.compute.configuration.models.UserConfiguration;
+import dk.vip.client.domain.convert.IClientWrapConverter;
 import dk.vip.client.domain.translate.Expression;
 import dk.vip.client.domain.translate.ITranslator;
 import dk.vip.client.domain.transmit.HeadTransmissionHandler;
+import dk.vip.client.domain.wrap.ClientWrap;
+import dk.vip.client.domain.wrap.MetaCollection;
 import dk.vip.client.presentation.HeadExpressionHandler;
 
 public class TailExpressionHandler implements HeadExpressionHandler {
 
     private ITranslator translator;
-    private IExpressionConverter expressionConverter;
+    private IClientWrapConverter clientWrapConverter;
     private HeadTransmissionHandler transmissionHandler;
     private Logger logger = Logger.getLogger(TailExpressionHandler.class.getName());
 
-    public TailExpressionHandler(ITranslator translator, IExpressionConverter expressionConverter,
+    public TailExpressionHandler(ITranslator translator, IClientWrapConverter clientWrapConverter,
             HeadTransmissionHandler transmissionHandler) {
         this.translator = translator;
-        this.expressionConverter = expressionConverter;
+        this.clientWrapConverter = clientWrapConverter;
         this.transmissionHandler = transmissionHandler;
     }
 
@@ -45,27 +50,18 @@ public class TailExpressionHandler implements HeadExpressionHandler {
             ProtocolHandler setProtocolHandler = new ProtocolHandler("set", setCommands);
             result = setProtocolHandler.execute(expression);
         } else {
-            // Package expression
-            
+            // Wrap expression
+            MetaCollection metaCollection = new MetaCollection();
+            metaCollection.add(Configurator.getInstance().get(NetworkConfiguration.class).bundle());
+            metaCollection.add(Configurator.getInstance().get(UserConfiguration.class).bundle());
+            ClientWrap clientWrap = new ClientWrap(expression, metaCollection);
             // Convert expression
-            String exportJson = expressionConverter.convert(expression);
+            String exportJson = clientWrapConverter.convert(clientWrap);
             logger.log(Level.INFO, "json export:\n" + exportJson);
             // Transmit expression
             String importJson = transmissionHandler.transmit(exportJson);
             logger.log(Level.INFO, "json import:\n" + importJson);
         }
         return result;
-    }
-
-    public void setStrategy(ITranslator translator) {
-        this.translator = translator;
-    }
-
-    public void setStrategy(IExpressionConverter expressionConverter) {
-        this.expressionConverter = expressionConverter;
-    }
-
-    public void setStrategy(HeadTransmissionHandler transmissionHandler) {
-        this.transmissionHandler = transmissionHandler;
     }
 }

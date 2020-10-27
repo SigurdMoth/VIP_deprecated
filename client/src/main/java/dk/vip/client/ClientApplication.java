@@ -2,8 +2,8 @@ package dk.vip.client;
 
 import dk.vip.client.domain.TailExpressionHandler;
 import dk.vip.client.domain.compute.configuration.Configurator;
-import dk.vip.client.domain.convert.ExpressionConverterJSON;
-import dk.vip.client.domain.convert.IExpressionConverter;
+import dk.vip.client.domain.convert.ClientWrapConverterJSON;
+import dk.vip.client.domain.convert.IClientWrapConverter;
 import dk.vip.client.domain.translate.ITranslator;
 import dk.vip.client.domain.translate.SimpleTranslator;
 import dk.vip.client.domain.transmit.HeadTransmissionHandler;
@@ -17,11 +17,11 @@ public class ClientApplication {
 
 	public static void main(String[] args) {
 		ITranslator translator = new SimpleTranslator();
-		IExpressionConverter expressionConverter = new ExpressionConverterJSON();
+		IClientWrapConverter clientWrapConverter = new ClientWrapConverterJSON();
 		HeadTransmissionHandler transmissionHandler = new TailTransmissionHandler();
 		Configurator.getInstance().setStrategy(new TailConfigurationFileHandler());
 		Configurator.getInstance().init();
-		HeadExpressionHandler expressionHandler = new TailExpressionHandler(translator, expressionConverter,
+		HeadExpressionHandler expressionHandler = new TailExpressionHandler(translator, clientWrapConverter,
 				transmissionHandler);
 
 		IPromptReader reader = new PromptScanner(expressionHandler);
