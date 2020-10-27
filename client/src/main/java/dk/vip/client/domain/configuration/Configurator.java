@@ -6,7 +6,7 @@ import java.util.Map;
 public class Configurator {
     // singleton makes it easy to retrieve configuration files.
     private static Configurator instance;
-    private HeadFileHandler fileHandler;
+    private HeadConfigurationFileHandler fileHandler;
     // Configurationmodel = instance of a configuration file
     private final Map<Class, ConfigurationModel> configurationModels;
 
@@ -30,7 +30,7 @@ public class Configurator {
         return fileHandler.load(configurationModels.get(config));
     }
 
-    public void setStrategy(HeadFileHandler fileHandler) {
+    public void setStrategy(HeadConfigurationFileHandler fileHandler) {
         this.fileHandler = fileHandler;
     }
 

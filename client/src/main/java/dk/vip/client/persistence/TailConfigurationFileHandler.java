@@ -6,9 +6,9 @@ import java.io.FileWriter;
 import com.google.gson.Gson;
 
 import dk.vip.client.domain.configuration.ConfigurationModel;
-import dk.vip.client.domain.configuration.HeadFileHandler;
+import dk.vip.client.domain.configuration.HeadConfigurationFileHandler;
 
-public class TailFileHandler implements HeadFileHandler {
+public class TailConfigurationFileHandler implements HeadConfigurationFileHandler {
 
     @Override
     public boolean save(ConfigurationModel config) {
