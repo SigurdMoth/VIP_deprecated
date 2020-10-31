@@ -13,8 +13,8 @@ import dk.vip.client.domain.compute.configuration.Configurator;
 import dk.vip.client.domain.compute.configuration.models.NetworkConfiguration;
 import dk.vip.client.domain.compute.configuration.models.UserConfiguration;
 import dk.vip.client.domain.convert.IClientWrapConverter;
-import dk.vip.client.domain.translate.Expression;
-import dk.vip.client.domain.translate.ITranslator;
+import dk.vip.client.domain.interpret.Expression;
+import dk.vip.client.domain.interpret.IInterpreter;
 import dk.vip.client.domain.transmit.HeadTransmissionHandler;
 import dk.vip.client.domain.wrap.ClientWrap;
 import dk.vip.client.domain.wrap.MetaCollection;
@@ -22,14 +22,14 @@ import dk.vip.client.presentation.HeadExpressionHandler;
 
 public class TailExpressionHandler implements HeadExpressionHandler {
 
-    private ITranslator translator;
+    private IInterpreter Interpreter;
     private IClientWrapConverter clientWrapConverter;
     private HeadTransmissionHandler transmissionHandler;
     private Logger logger = Logger.getLogger(TailExpressionHandler.class.getName());
 
-    public TailExpressionHandler(ITranslator translator, IClientWrapConverter clientWrapConverter,
+    public TailExpressionHandler(IInterpreter interpreter, IClientWrapConverter clientWrapConverter,
             HeadTransmissionHandler transmissionHandler) {
-        this.translator = translator;
+        this.Interpreter = interpreter;
         this.clientWrapConverter = clientWrapConverter;
         this.transmissionHandler = transmissionHandler;
     }
@@ -37,7 +37,7 @@ public class TailExpressionHandler implements HeadExpressionHandler {
     @Override
     public String handleExpression(String query) {
         // Translate expression
-        Expression expression = translator.translate(query);
+        Expression expression = Interpreter.interpret(query);
         logger.log(Level.INFO, "expression:\n" + expression.toString());
         // Verify expression
 

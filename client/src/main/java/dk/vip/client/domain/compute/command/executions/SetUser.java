@@ -3,8 +3,8 @@ package dk.vip.client.domain.compute.command.executions;
 import dk.vip.client.domain.compute.command.IExecuteExpression;
 import dk.vip.client.domain.compute.configuration.Configurator;
 import dk.vip.client.domain.compute.configuration.models.UserConfiguration;
-import dk.vip.client.domain.translate.Expression;
-import dk.vip.client.domain.translate.Parameter;
+import dk.vip.client.domain.interpret.Expression;
+import dk.vip.client.domain.interpret.Parameter;
 
 public class SetUser implements IExecuteExpression {
 

@@ -1,6 +1,6 @@
 package dk.vip.client.domain.wrap;
 
-import dk.vip.client.domain.translate.Expression;
+import dk.vip.client.domain.interpret.Expression;
 
 public class ClientWrap {
 

@@ -1,4 +1,4 @@
-package dk.vip.client.domain.translate;
+package dk.vip.client.domain.interpret;
 
 public class Parameter {
     private String identifier, value = "";

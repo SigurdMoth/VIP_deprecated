@@ -17,7 +17,7 @@ public class TailTransmissionHandler implements HeadTransmissionHandler {
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-        .uri(URI.create("http://localhost:8080/postExpression"))
+        .uri(URI.create("http://localhost:8080/session/post"))
         .POST(BodyPublishers.ofString(expressionJson)).build();
         client.sendAsync(request, BodyHandlers.ofString())
         .thenApply(HttpResponse::body)

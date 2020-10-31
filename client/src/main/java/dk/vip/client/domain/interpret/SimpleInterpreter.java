@@ -1,15 +1,15 @@
-package dk.vip.client.domain.translate;
+package dk.vip.client.domain.interpret;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class SimpleTranslator implements ITranslator {
-    private Logger logger = Logger.getLogger(SimpleTranslator.class.getName());
+public class SimpleInterpreter implements IInterpreter {
+    private Logger logger = Logger.getLogger(SimpleInterpreter.class.getName());
 
     @Override
-    public Expression translate(String query) {
+    public Expression interpret(String query) {
         List<Parameter> parameters = new ArrayList<>();
 
         String[] splitQuery = query.split(" ");

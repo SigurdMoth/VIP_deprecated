@@ -2,13 +2,13 @@ package dk.vip.client.presentation;
 
 import java.util.Scanner;
 
-public class PromptScanner implements IPromptReader {
+public class InputScanner implements IInputReader {
 
     HeadExpressionHandler expressionHandler;
     private boolean isRunning;
     private Scanner scanner = new Scanner(System.in);
 
-    public PromptScanner(HeadExpressionHandler expressionHandler) {
+    public InputScanner(HeadExpressionHandler expressionHandler) {
         this.expressionHandler = expressionHandler;
     }
 

@@ -1,6 +1,6 @@
 package dk.vip.client.presentation;
 
-public interface IPromptReader {
+public interface IInputReader {
 
     void start();
 
