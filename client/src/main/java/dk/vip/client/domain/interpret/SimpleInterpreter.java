@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import dk.vip.expression.Expression;
+import dk.vip.expression.Parameter;
+
 public class SimpleInterpreter implements IInterpreter {
     private Logger logger = Logger.getLogger(SimpleInterpreter.class.getName());
 

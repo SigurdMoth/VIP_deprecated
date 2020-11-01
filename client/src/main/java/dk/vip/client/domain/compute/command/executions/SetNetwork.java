@@ -3,8 +3,9 @@ package dk.vip.client.domain.compute.command.executions;
 import dk.vip.client.domain.compute.command.IExecuteExpression;
 import dk.vip.client.domain.compute.configuration.Configurator;
 import dk.vip.client.domain.compute.configuration.models.NetworkConfiguration;
-import dk.vip.client.domain.interpret.Expression;
-import dk.vip.client.domain.interpret.Parameter;
+import dk.vip.expression.Expression;
+import dk.vip.expression.Parameter;
+
 
 public class SetNetwork implements IExecuteExpression {
 

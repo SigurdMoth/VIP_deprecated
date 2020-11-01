@@ -1,8 +1,7 @@
 plugins {
-	id 'org.springframework.boot' version '2.3.4.RELEASE'
+	id 'org.springframework.boot' version '2.3.5.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 	id 'java'
-    id "net.linguica.maven-settings" version "0.5"
 }
 
 group = 'dk.vip'
@@ -11,19 +10,10 @@ sourceCompatibility = '11'
 
 repositories {
 	mavenCentral()
-	maven {
-        url 'https://pkgs.dev.azure.com/SigurdMoth/_packaging/SigurdMoth/maven/v1'
-        name 'SigurdMoth'
-        authentication {
-            basic(BasicAuthentication)
-        }
-    }
 }
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
-	implementation 'com.google.code.gson:gson'
-	compile(group: 'dk.vip', name: 'expression', version: '0.0.1')
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}

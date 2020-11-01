@@ -13,12 +13,12 @@ import dk.vip.client.domain.compute.configuration.Configurator;
 import dk.vip.client.domain.compute.configuration.models.NetworkConfiguration;
 import dk.vip.client.domain.compute.configuration.models.UserConfiguration;
 import dk.vip.client.domain.convert.IClientWrapConverter;
-import dk.vip.client.domain.interpret.Expression;
 import dk.vip.client.domain.interpret.IInterpreter;
 import dk.vip.client.domain.transmit.HeadTransmissionHandler;
 import dk.vip.client.domain.wrap.ClientWrap;
 import dk.vip.client.domain.wrap.MetaCollection;
 import dk.vip.client.presentation.HeadExpressionHandler;
+import dk.vip.expression.Expression;
 
 public class TailExpressionHandler implements HeadExpressionHandler {
 

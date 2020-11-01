@@ -1,0 +1,48 @@
+plugins {
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+	id('maven-publish')
+    id "net.linguica.maven-settings" version "0.5"
+}
+
+group = 'dk.vip'
+version = '0.0.1'
+sourceCompatibility = '11'
+
+publishing {
+    repositories {
+        maven {
+            url 'https://pkgs.dev.azure.com/SigurdMoth/_packaging/SigurdMoth/maven/v1'
+            name 'SigurdMoth'
+            authentication {
+                basic(BasicAuthentication)
+            }
+        }
+    }
+    publications { 
+        myPublication(MavenPublication) { 
+            groupId 'dk.vip' 
+            artifactId 'expression' 
+            version '0.0.1' 
+            artifact './build/libs/expression-0.0.1.jar' 
+        } 
+    } 
+}
+repositories {
+	mavenCentral()
+	maven {
+        url 'https://pkgs.dev.azure.com/SigurdMoth/_packaging/SigurdMoth/maven/v1'
+        name 'SigurdMoth'
+        authentication {
+            basic(BasicAuthentication)
+        }
+    }
+}
+
+dependencies {
+	
+}
+
+test {
+	useJUnitPlatform()
+}
