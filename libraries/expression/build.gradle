@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'dk.vip'
-version = '0.0.1'
+version = '0.0.2b'
 sourceCompatibility = '11'
 
 publishing {
@@ -24,8 +24,8 @@ publishing {
         myPublication(MavenPublication) { 
             groupId 'dk.vip' 
             artifactId 'expression' 
-            version '0.0.1' 
-            artifact './build/libs/expression-0.0.1.jar' 
+            version "${version}"
+            artifact "./build/libs/expression-${version}.jar" 
         } 
     } 
 }
