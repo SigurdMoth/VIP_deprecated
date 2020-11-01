@@ -25,4 +25,6 @@ jobs:
     - name: Build with Gradle
       run: ./libraries/expression/gradlew build
     - name: Publish to Azure DevOps
-      run: ./libraries/expression/gradlew publish
+      run: |
+        cd libraries/expression
+        ./gradlew publish
