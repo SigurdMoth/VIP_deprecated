@@ -6,11 +6,7 @@ plugins {
 }
 
 group = 'dk.vip'
-if (project.hasProperty('projectVersion')) {
-  project.version = project.projectVersion
-} else {
-  project.version = '10.0.0'
-}
+version = project.hasProperty('projectVersion') ? project.projectVersion : '10.0.0'
 sourceCompatibility = '11'
 
 publishing {
