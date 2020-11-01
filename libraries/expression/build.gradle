@@ -6,10 +6,18 @@ plugins {
 }
 
 group = 'dk.vip'
-version = '0.0.2b'
+version = '0.0.2c'
 sourceCompatibility = '11'
 
 publishing {
+	    publications { 
+        myPublication(MavenPublication) { 
+            groupId 'dk.vip' 
+            artifactId 'expression' 
+            version "${version}"
+            artifact "./build/libs/expression-${version}.jar" 
+        } 
+    } 
     repositories {
         maven {
             url 'https://pkgs.dev.azure.com/SigurdMoth/_packaging/SigurdMoth/maven/v1'
@@ -20,14 +28,6 @@ publishing {
             }
         }
     }
-    publications { 
-        myPublication(MavenPublication) { 
-            groupId 'dk.vip' 
-            artifactId 'expression' 
-            version "${version}"
-            artifact "./build/libs/expression-${version}.jar" 
-        } 
-    } 
 }
 repositories {
 	mavenCentral()
