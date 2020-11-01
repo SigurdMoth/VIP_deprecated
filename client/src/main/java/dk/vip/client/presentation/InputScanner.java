@@ -1,16 +1,16 @@
 package dk.vip.client.presentation;
 
 import java.util.Scanner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class InputScanner implements IInputReader {
 
-    HeadExpressionHandler expressionHandler;
+    private HeadExpressionHandler expressionHandler;
     private boolean isRunning;
     private Scanner scanner = new Scanner(System.in);
-
-    public InputScanner(HeadExpressionHandler expressionHandler) {
-        this.expressionHandler = expressionHandler;
-    }
+    //private Logger logger = Logger.getLogger(InputScanner.class.getName());
 
     @Override
     public void start() {
@@ -24,12 +24,12 @@ public class InputScanner implements IInputReader {
     }
 
     private void readLoop() {
-        new Thread(() -> {
+       new Thread(() -> {
             while (isRunning) {
                 readLine();
             }
             scanner.close();
-        }).start();
+       }).start();
     }
 
     private void readLine() {
@@ -41,5 +41,10 @@ public class InputScanner implements IInputReader {
             String result = expressionHandler.handleExpression(query);
             System.out.println(result);
         }
+    }
+
+    @Autowired
+    public void setStrategy(HeadExpressionHandler expressionHandler) {
+        this.expressionHandler = expressionHandler;
     }
 }

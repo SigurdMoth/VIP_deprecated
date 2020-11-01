@@ -7,9 +7,12 @@ import java.io.Reader;
 
 import com.google.gson.Gson;
 
+import org.springframework.stereotype.Component;
+
 import dk.vip.client.domain.compute.configuration.ConfigurationModel;
 import dk.vip.client.domain.compute.configuration.HeadConfigurationFileHandler;
 
+@Component
 public class TailConfigurationFileHandler implements HeadConfigurationFileHandler {
 
     @Override

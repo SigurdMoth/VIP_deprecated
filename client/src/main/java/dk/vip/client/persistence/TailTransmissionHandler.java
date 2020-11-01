@@ -7,8 +7,11 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse.BodyHandlers;
 
+import org.springframework.stereotype.Component;
+
 import dk.vip.client.domain.transmit.HeadTransmissionHandler;
 
+@Component
 public class TailTransmissionHandler implements HeadTransmissionHandler {
 
     @Override

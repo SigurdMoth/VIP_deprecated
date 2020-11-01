@@ -1,17 +1,23 @@
 package dk.vip.client.domain.compute.command.executions;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import dk.vip.client.domain.compute.command.IExecuteExpression;
 import dk.vip.client.domain.compute.configuration.Configurator;
 import dk.vip.client.domain.compute.configuration.models.UserConfiguration;
 import dk.vip.expression.Expression;
 import dk.vip.expression.Parameter;
 
-
+@Service
 public class SetUser implements IExecuteExpression {
+
+    @Autowired
+    private Configurator configurator;
 
     @Override
     public String execute(Expression expression) {
-        UserConfiguration userConf = Configurator.getInstance().get(UserConfiguration.class);
+        UserConfiguration userConf = configurator.get(UserConfiguration.class);
 
         StringBuilder sb = new StringBuilder("UserConfiguration: ");
         
@@ -21,7 +27,7 @@ public class SetUser implements IExecuteExpression {
             sb.append("\n \t+ added parameter " + parameter.getIdentifier() + " of value:" + parameter.getValue());
         }
 
-        Configurator.getInstance().saveConfig(UserConfiguration.class);
+        configurator.saveConfig(UserConfiguration.class);
         return sb.toString();
     }
 

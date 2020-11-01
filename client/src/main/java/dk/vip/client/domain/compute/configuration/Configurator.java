@@ -3,31 +3,26 @@ package dk.vip.client.domain.compute.configuration;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import dk.vip.client.domain.compute.configuration.models.NetworkConfiguration;
 import dk.vip.client.domain.compute.configuration.models.UserConfiguration;
 
+@Component
 public class Configurator {
-    // singleton makes it easy to retrieve configuration files.
-    private static Configurator instance;
-    private HeadConfigurationFileHandler fileHandler;
+
+    private final HeadConfigurationFileHandler fileHandler;
     // Configurationmodel = instance of a configuration file
     private final Map<Class, ConfigurationModel> configurationModels;
 
-    private Configurator() {
+    @Autowired
+    private Configurator(HeadConfigurationFileHandler fileHandler) {
+        this.fileHandler = fileHandler;
         configurationModels = new HashMap<>();
         configurationModels.put(NetworkConfiguration.class, new NetworkConfiguration("cfgNetwork.json"));
         configurationModels.put(UserConfiguration.class, new UserConfiguration("cfgUser.json"));
-    }
-
-    public void init() {
         loadAllConfigs();
-    }
-
-    public static Configurator getInstance() {
-        if (instance == null) {
-            instance = new Configurator();
-        }
-        return instance;
     }
 
     public void saveConfig(Class config) {
@@ -47,11 +42,8 @@ public class Configurator {
         }
     }
 
-    public void setStrategy(HeadConfigurationFileHandler fileHandler) {
-        this.fileHandler = fileHandler;
-    }
-
     public <T extends ConfigurationModel> T get(Class<T> classModel) {
         return (T) configurationModels.get(classModel);
     }
+
 }

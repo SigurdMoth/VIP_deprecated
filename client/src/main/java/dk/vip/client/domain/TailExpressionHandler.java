@@ -5,10 +5,12 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import dk.vip.client.domain.compute.command.IExecuteExpression;
 import dk.vip.client.domain.compute.command.ProtocolHandler;
 import dk.vip.client.domain.compute.command.executions.SetNetwork;
-import dk.vip.client.domain.compute.command.executions.SetUser;
 import dk.vip.client.domain.compute.configuration.Configurator;
 import dk.vip.client.domain.compute.configuration.models.NetworkConfiguration;
 import dk.vip.client.domain.compute.configuration.models.UserConfiguration;
@@ -20,24 +22,29 @@ import dk.vip.client.domain.wrap.MetaCollection;
 import dk.vip.client.presentation.HeadExpressionHandler;
 import dk.vip.expression.Expression;
 
+@Component
 public class TailExpressionHandler implements HeadExpressionHandler {
 
-    private IInterpreter Interpreter;
+    @Autowired
+    private IInterpreter interpreter;
+    @Autowired
     private IClientWrapConverter clientWrapConverter;
+    @Autowired
     private HeadTransmissionHandler transmissionHandler;
-    private Logger logger = Logger.getLogger(TailExpressionHandler.class.getName());
+    @Autowired
+    private Configurator configurator;
+    
+    @Autowired
+    private SetNetwork setNetwork;
+    @Autowired
+    private SetNetwork setUser;
 
-    public TailExpressionHandler(IInterpreter interpreter, IClientWrapConverter clientWrapConverter,
-            HeadTransmissionHandler transmissionHandler) {
-        this.Interpreter = interpreter;
-        this.clientWrapConverter = clientWrapConverter;
-        this.transmissionHandler = transmissionHandler;
-    }
+    private Logger logger = Logger.getLogger(TailExpressionHandler.class.getName());
 
     @Override
     public String handleExpression(String query) {
         // Translate expression
-        Expression expression = Interpreter.interpret(query);
+        Expression expression = interpreter.interpret(query);
         logger.log(Level.INFO, "expression:\n" + expression.toString());
         // Verify expression
 
@@ -45,15 +52,15 @@ public class TailExpressionHandler implements HeadExpressionHandler {
         if (expression.getProtocol().equals("set")) {
             // Compute expression
             Map<String, IExecuteExpression> setCommands = new HashMap<>();
-            setCommands.put("network", new SetNetwork());
-            setCommands.put("user", new SetUser());
+            setCommands.put("network", setNetwork);
+            setCommands.put("user", setUser);
             ProtocolHandler setProtocolHandler = new ProtocolHandler("set", setCommands);
             result = setProtocolHandler.execute(expression);
         } else {
             // Wrap expression
             MetaCollection metaCollection = new MetaCollection();
-            metaCollection.add(Configurator.getInstance().get(NetworkConfiguration.class).bundle());
-            metaCollection.add(Configurator.getInstance().get(UserConfiguration.class).bundle());
+            metaCollection.add(configurator.get(NetworkConfiguration.class).bundle());
+            metaCollection.add(configurator.get(UserConfiguration.class).bundle());
             ClientWrap clientWrap = new ClientWrap(expression, metaCollection);
             // Convert expression
             String exportJson = clientWrapConverter.convert(clientWrap);
