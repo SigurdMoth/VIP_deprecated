@@ -6,41 +6,43 @@ plugins {
 }
 
 group = 'dk.vip'
-version = '0.0.1'
+version = project.hasProperty('projectVersion') ? project.projectVersion : '10.0.0'
 sourceCompatibility = '11'
 
 publishing {
+	    publications { 
+        myPublication(MavenPublication) { 
+            groupId 'dk.vip' 
+            artifactId 'expression' 
+            version "${version}"
+            artifact "./build/libs/expression-${version}.jar" 
+        } 
+    } 
     repositories {
         maven {
             url 'https://pkgs.dev.azure.com/SigurdMoth/_packaging/SigurdMoth/maven/v1'
             name 'SigurdMoth'
-            authentication {
-                basic(BasicAuthentication)
+            credentials {
+                username='SigurdMoth'
+				password='2lec3ojsnqlqedljmiscsjdlgfeicrdft4d7unjk6n3n4in5rb2a'
             }
         }
     }
-    publications { 
-        myPublication(MavenPublication) { 
-            groupId 'dk.vip' 
-            artifactId 'expression' 
-            version '0.0.1' 
-            artifact './build/libs/expression-0.0.1.jar' 
-        } 
-    } 
 }
 repositories {
 	mavenCentral()
 	maven {
         url 'https://pkgs.dev.azure.com/SigurdMoth/_packaging/SigurdMoth/maven/v1'
         name 'SigurdMoth'
-        authentication {
-            basic(BasicAuthentication)
-        }
+        credentials {
+			username='SigurdMoth'
+			password='2lec3ojsnqlqedljmiscsjdlgfeicrdft4d7unjk6n3n4in5rb2a'
+		}
     }
 }
 
 dependencies {
-	
+
 }
 
 test {
