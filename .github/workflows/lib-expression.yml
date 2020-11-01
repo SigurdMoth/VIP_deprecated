@@ -29,6 +29,6 @@ jobs:
         GITHUB_TOKEN: 2lec3ojsnqlqedljmiscsjdlgfeicrdft4d7unjk6n3n4in5rb2a
       run: |
         pwd
-        tree .
+        ls -R
         cd libraries/expression/
         ./gradlew publish
