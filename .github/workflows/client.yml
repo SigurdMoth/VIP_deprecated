@@ -24,6 +24,4 @@ jobs:
       run: chmod +x ./client/gradlew
     - name: Build with Gradle
       run: ./client/gradlew build
-    - name: Publish to Azure DevOps
-      run: ./client/gradlew publish
       
