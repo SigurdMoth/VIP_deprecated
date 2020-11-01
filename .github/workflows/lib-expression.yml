@@ -32,4 +32,5 @@ jobs:
         GITHUB_TOKEN: 2lec3ojsnqlqedljmiscsjdlgfeicrdft4d7unjk6n3n4in5rb2a
       run: |
         NEW_VERSION=$(echo "${GITHUB_REF}" | cut -d "/" -f3)
+        cd libraries/expression/
         ./gradlew -Pversion=${NEW_VERSION} publish
