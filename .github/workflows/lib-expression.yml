@@ -23,7 +23,9 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x ./libraries/expression/gradlew
     - name: Build with Gradle
-      run: ./libraries/expression/gradlew build
+      run: |
+        NEW_VERSION=$(echo "${GITHUB_REF}" | cut -d "/" -f3)
+        ./libraries/expression/gradlew -PprojectVersion=${NEW_VERSION} build
               # The GITHUB_REF tag comes in the format 'refs/tags/xxx'.
         # If we split on '/' and take the 3rd value,
         # we can get the release name.
@@ -33,4 +35,4 @@ jobs:
       run: |
         NEW_VERSION=$(echo "${GITHUB_REF}" | cut -d "/" -f3)
         cd libraries/expression/
-        ./gradlew -Pversion=${NEW_VERSION} publish
+        ./gradlew -PprojectVersion=${NEW_VERSION} publish
