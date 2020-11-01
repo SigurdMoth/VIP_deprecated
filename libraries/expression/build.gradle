@@ -14,8 +14,9 @@ publishing {
         maven {
             url 'https://pkgs.dev.azure.com/SigurdMoth/_packaging/SigurdMoth/maven/v1'
             name 'SigurdMoth'
-            authentication {
-                basic(BasicAuthentication)
+            credentials {
+                username='SigurdMoth'
+				password='2lec3ojsnqlqedljmiscsjdlgfeicrdft4d7unjk6n3n4in5rb2a'
             }
         }
     }
@@ -33,14 +34,15 @@ repositories {
 	maven {
         url 'https://pkgs.dev.azure.com/SigurdMoth/_packaging/SigurdMoth/maven/v1'
         name 'SigurdMoth'
-        authentication {
-            basic(BasicAuthentication)
-        }
+        credentials {
+			username='SigurdMoth'
+			password='2lec3ojsnqlqedljmiscsjdlgfeicrdft4d7unjk6n3n4in5rb2a'
+		}
     }
 }
 
 dependencies {
-	
+
 }
 
 test {
