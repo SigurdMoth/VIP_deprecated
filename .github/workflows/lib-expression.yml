@@ -28,5 +28,7 @@ jobs:
       env:
         GITHUB_TOKEN: 2lec3ojsnqlqedljmiscsjdlgfeicrdft4d7unjk6n3n4in5rb2a
       run: |
+        pwd
+        tree .
         cd libraries/expression/
         ./gradlew publish
