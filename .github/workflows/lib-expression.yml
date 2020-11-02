@@ -27,6 +27,9 @@ jobs:
         GITHUB_TOKEN: 2lec3ojsnqlqedljmiscsjdlgfeicrdft4d7unjk6n3n4in5rb2a
       run: |
           ./libraries/expression/gradlew build
+          pwd
+          ls -r
           cp -r .m2 ~/.m2
           cd ./libraries/expression/
+          pwd
           ./gradlew publish
