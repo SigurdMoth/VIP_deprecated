@@ -26,7 +26,7 @@ jobs:
       run: |
           ./libraries/expression/gradlew build
           cd libraries/expression/
-          ./libraries/expression/gradlew publish
+          ./gradlew publish
     - name: Publish artifact
       env:
         GITHUB_TOKEN: 2lec3ojsnqlqedljmiscsjdlgfeicrdft4d7unjk6n3n4in5rb2a
