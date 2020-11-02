@@ -28,7 +28,7 @@ jobs:
       run: |
           ./libraries/expression/gradlew build
           pwd
-          ls -r
+          ls -R
           cp -r .m2 ~/.m2
           cd ./libraries/expression/
           pwd
