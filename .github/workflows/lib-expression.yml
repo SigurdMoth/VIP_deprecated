@@ -22,15 +22,11 @@ jobs:
         java-version: 11
     - name: Grant execute permission for gradlew
       run: chmod +x ./libraries/expression/gradlew
-    - name: Copy .m2 to home
-      run: cp -r .m2 ~/.m2
-    - name: Gradlew assemble build
-      run: |
-          cd ./libraries/expression/
-          ./gradlew assemble
-    - name: Gradlew publish
+    - name: Build with Gradle
       env:
         GITHUB_TOKEN: 2lec3ojsnqlqedljmiscsjdlgfeicrdft4d7unjk6n3n4in5rb2a
       run: |
-           cd ./libraries/expression/
-           ./gradlew publish
+          cp -r .m2 ~/.m2
+          cd ./libraries/expression/
+          ./gradlew assemble
+          ./gradlew publish
