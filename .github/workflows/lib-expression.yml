@@ -25,6 +25,7 @@ jobs:
     - name: Build with Gradle
       run: |
           ./libraries/expression/gradlew build
+          cd libraries/expression/
           ./libraries/expression/gradlew publish
     - name: Publish artifact
       env:
