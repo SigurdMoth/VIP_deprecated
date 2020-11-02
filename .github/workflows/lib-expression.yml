@@ -27,7 +27,7 @@ jobs:
         GITHUB_TOKEN: 2lec3ojsnqlqedljmiscsjdlgfeicrdft4d7unjk6n3n4in5rb2a
       run: |
           cd ./libraries/expression/
-          ./gradlew bootJar
+          ./gradlew assemble
           ls -R
           cp -r .m2 ~/.m2
           ./gradlew publish
