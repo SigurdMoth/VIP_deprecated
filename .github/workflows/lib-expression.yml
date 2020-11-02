@@ -23,17 +23,10 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x ./libraries/expression/gradlew
     - name: Build with Gradle
-      run: |
-        NEW_VERSION=$(echo "${GITHUB_REF}" | cut -d "/" -f3)
-        ./libraries/expression/gradlew -PprojectVersion=${NEW_VERSION} build
-              # The GITHUB_REF tag comes in the format 'refs/tags/xxx'.
-        # If we split on '/' and take the 3rd value,
-        # we can get the release name.
-    - name: Publish artifact
       env:
         GITHUB_TOKEN: 2lec3ojsnqlqedljmiscsjdlgfeicrdft4d7unjk6n3n4in5rb2a
       run: |
-        NEW_VERSION=$(echo "${GITHUB_REF}" | cut -d "/" -f3)
-        cd libraries/expression/
-        echo "${GITHUB_REF##*/}"
-        ./gradlew -PprojectVersion=${NEW_VERSION} publish
+          cp -r .m2 ~/.m2
+          cd ./libraries/expression/
+          ./gradlew assemble
+          ./gradlew publish
