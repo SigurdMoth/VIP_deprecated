@@ -1,0 +1,32 @@
+# This workflow will build a Java project with Gradle
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
+
+name: libwrap/*
+
+on:
+  push:
+    branches: [ libwrap-* ]
+  pull_request:
+    branches: [ libwrap-* ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Grant execute permission for gradlew
+      run: chmod +x ./libraries/wrap/gradlew
+    - name: Build with Gradle
+      env:
+        GITHUB_TOKEN: 2lec3ojsnqlqedljmiscsjdlgfeicrdft4d7unjk6n3n4in5rb2a
+      run: |
+          cp -r .m2 ~/.m2
+          cd ./libraries/wrap/
+          ./gradlew assemble
+          ./gradlew publish
