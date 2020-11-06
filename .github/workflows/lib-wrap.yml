@@ -5,9 +5,9 @@ name: libwrap/*
 
 on:
   push:
-    branches: [ libwrap-* ]
+    branches: [ libwrap/* ]
   pull_request:
-    branches: [ libwrap-* ]
+    branches: [ libwrap/* ]
 
 jobs:
   build:
