@@ -10,8 +10,7 @@ public class InputScanner implements IInputReader {
     private HeadExpressionHandler expressionHandler;
     private boolean isRunning;
     private Scanner scanner = new Scanner(System.in);
-    //private Logger logger = Logger.getLogger(InputScanner.class.getName());
-
+    
     @Override
     public void start() {
         isRunning = true;
@@ -23,13 +22,16 @@ public class InputScanner implements IInputReader {
         isRunning = false;
     }
 
+    /**
+     * Creates a thread which repeatedly reads a line of input.
+     */
     private void readLoop() {
-       new Thread(() -> {
+        new Thread(() -> {
             while (isRunning) {
                 readLine();
             }
             scanner.close();
-       }).start();
+        }).start();
     }
 
     private void readLine() {

@@ -2,21 +2,48 @@ plugins {
 	id 'org.springframework.boot' version '2.3.5.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 	id 'java'
+	id('maven-publish')
+    id "net.linguica.maven-settings" version "0.5"
 }
 
 group = 'dk.vip'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.1a'
 sourceCompatibility = '11'
 
+publishing {
+	    publications { 
+        myPublication(MavenPublication) { 
+            groupId 'dk.vip' 
+            artifactId 'wrap' 
+            version "${version}"
+            artifact "./build/libs/wrap-${version}.jar" 
+        } 
+    } 
+    repositories {
+        maven {
+            url 'https://pkgs.dev.azure.com/SigurdMoth/_packaging/SigurdMoth/maven/v1'
+            name 'SigurdMoth'
+            credentials {
+                username='SigurdMoth'
+				password='2lec3ojsnqlqedljmiscsjdlgfeicrdft4d7unjk6n3n4in5rb2a'
+            }
+        }
+    }
+}
 repositories {
 	mavenCentral()
+	maven {
+        url 'https://pkgs.dev.azure.com/SigurdMoth/_packaging/SigurdMoth/maven/v1'
+        name 'SigurdMoth'
+        credentials {
+			username='SigurdMoth'
+			password='2lec3ojsnqlqedljmiscsjdlgfeicrdft4d7unjk6n3n4in5rb2a'
+		}
+    }
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
+	compile(group: 'dk.vip', name: 'expression', version: '0.0.2e')
 }
 
 test {
