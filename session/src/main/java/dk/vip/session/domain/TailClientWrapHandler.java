@@ -3,15 +3,11 @@ package dk.vip.session.domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-
 import org.springframework.stereotype.Component;
-
 import dk.vip.session.domain.network.models.VipNetwork;
 import dk.vip.session.domain.network.models.VipNode;
 import dk.vip.session.domain.wrap.ClientWrap;
