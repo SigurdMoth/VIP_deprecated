@@ -1,7 +1,6 @@
 package dk.vip.client.domain.compute.command;
 
 import java.util.Map;
-
 import dk.vip.expression.Expression;
 
 public class ProtocolHandler {

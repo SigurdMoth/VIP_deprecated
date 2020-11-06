@@ -4,9 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import dk.vip.client.domain.compute.command.IExecuteExpression;
 import dk.vip.client.domain.compute.command.ProtocolHandler;
@@ -22,7 +21,14 @@ import dk.vip.client.domain.wrap.MetaCollection;
 import dk.vip.client.presentation.HeadExpressionHandler;
 import dk.vip.expression.Expression;
 
-@Component
+/**
+ * The TailExpressionHandler handles the input received from the presentation
+ * layer. The input is manipulated into an object (an expression). The
+ * expression is verified that it is a legitimate expression. If the expression
+ * is a local (client) command, the command is processed. If the expression is
+ * not local, it is transmitted to the session (server) for further processing.
+ */
+@Service
 public class TailExpressionHandler implements HeadExpressionHandler {
 
     @Autowired
@@ -33,7 +39,6 @@ public class TailExpressionHandler implements HeadExpressionHandler {
     private HeadTransmissionHandler transmissionHandler;
     @Autowired
     private Configurator configurator;
-    
     @Autowired
     private SetNetwork setNetwork;
     @Autowired
@@ -43,21 +48,21 @@ public class TailExpressionHandler implements HeadExpressionHandler {
 
     @Override
     public String handleExpression(String query) {
-        // Translate expression
+        // Interpret expression from input
         Expression expression = interpreter.interpret(query);
         logger.log(Level.INFO, "expression:\n" + expression.toString());
-        // Verify expression
-
+        // Verify expression for mistyping
+        //...
+        // Compute expression for commands <client side>
         String result = "";
         if (expression.getProtocol().equals("set")) {
-            // Compute expression
             Map<String, IExecuteExpression> setCommands = new HashMap<>();
             setCommands.put("network", setNetwork);
             setCommands.put("user", setUser);
             ProtocolHandler setProtocolHandler = new ProtocolHandler("set", setCommands);
             result = setProtocolHandler.execute(expression);
         } else {
-            // Wrap expression
+            // Wrap expression with meta data
             MetaCollection metaCollection = new MetaCollection();
             metaCollection.add(configurator.get(NetworkConfiguration.class).bundle());
             metaCollection.add(configurator.get(UserConfiguration.class).bundle());
@@ -65,7 +70,7 @@ public class TailExpressionHandler implements HeadExpressionHandler {
             // Convert expression
             String exportJson = clientWrapConverter.convert(clientWrap);
             logger.log(Level.INFO, "json export:\n" + exportJson);
-            // Transmit expression
+            // Transmit expression <server side>
             String importJson = transmissionHandler.transmit(exportJson);
             logger.log(Level.INFO, "json import:\n" + importJson);
         }

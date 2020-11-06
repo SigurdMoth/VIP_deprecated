@@ -8,6 +8,10 @@ import org.springframework.stereotype.Component;
 import dk.vip.expression.Expression;
 import dk.vip.expression.Parameter;
 
+/**
+ * The simpleInterpreter is simple in nature as all it does is to split an input
+ * into an expression consisting of a protocol, command and with belonging parameters (-x)
+ */
 @Component
 public class SimpleInterpreter implements IInterpreter {
     private Logger logger = Logger.getLogger(SimpleInterpreter.class.getName());

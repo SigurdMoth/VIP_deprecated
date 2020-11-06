@@ -1,14 +1,16 @@
 package dk.vip.client.domain.compute.configuration;
 
-public abstract class ConfigurationModel {
-    
+import dk.vip.client.domain.wrap.Bundlable;
+
+public abstract class ConfigurationModel implements Bundlable {
+
     private final String path;
 
     public ConfigurationModel(String path) {
         this.path = path;
     }
-    
-    public String getPath(){
+
+    public String getPath() {
         return path;
     }
 }

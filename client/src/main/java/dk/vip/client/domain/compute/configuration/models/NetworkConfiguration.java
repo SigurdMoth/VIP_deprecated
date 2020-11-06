@@ -1,10 +1,9 @@
 package dk.vip.client.domain.compute.configuration.models;
 
 import dk.vip.client.domain.compute.configuration.ConfigurationModel;
-import dk.vip.client.domain.wrap.Bundlable;
 import dk.vip.client.domain.wrap.MetaBundle;
 
-public class NetworkConfiguration extends ConfigurationModel implements Bundlable {
+public class NetworkConfiguration extends ConfigurationModel  {
 
     private String node;
     private String network;
