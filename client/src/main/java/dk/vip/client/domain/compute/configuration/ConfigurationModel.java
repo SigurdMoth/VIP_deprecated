@@ -1,6 +1,6 @@
 package dk.vip.client.domain.compute.configuration;
 
-import dk.vip.client.domain.wrap.Bundlable;
+import dk.vip.wrap.Bundlable;
 
 public abstract class ConfigurationModel implements Bundlable {
 
