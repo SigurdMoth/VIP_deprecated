@@ -16,10 +16,10 @@ import dk.vip.client.domain.compute.configuration.models.UserConfiguration;
 import dk.vip.client.domain.convert.IClientWrapConverter;
 import dk.vip.client.domain.interpret.IInterpreter;
 import dk.vip.client.domain.transmit.HeadTransmissionHandler;
-import dk.vip.client.domain.wrap.ClientWrap;
-import dk.vip.client.domain.wrap.MetaCollection;
 import dk.vip.client.presentation.HeadExpressionHandler;
 import dk.vip.expression.Expression;
+import dk.vip.wrap.ClientWrap;
+import dk.vip.wrap.MetaCollection;
 
 /**
  * The TailExpressionHandler handles the input received from the presentation

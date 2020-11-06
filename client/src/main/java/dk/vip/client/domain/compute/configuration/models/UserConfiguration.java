@@ -1,7 +1,7 @@
 package dk.vip.client.domain.compute.configuration.models;
 
 import dk.vip.client.domain.compute.configuration.ConfigurationModel;
-import dk.vip.client.domain.wrap.MetaBundle;
+import dk.vip.wrap.MetaBundle;
 
 public class UserConfiguration extends ConfigurationModel  {
 
