@@ -10,10 +10,10 @@ import com.google.gson.JsonSyntaxException;
 import org.springframework.stereotype.Component;
 import dk.vip.session.domain.network.models.VipNetwork;
 import dk.vip.session.domain.network.models.VipNode;
-import dk.vip.session.domain.wrap.ClientWrap;
-import dk.vip.session.domain.wrap.MetaBundle;
-import dk.vip.session.domain.wrap.MetaCollection;
 import dk.vip.session.presentation.HeadClientWrapHandler;
+import dk.vip.wrap.ClientWrap;
+import dk.vip.wrap.MetaBundle;
+import dk.vip.wrap.MetaCollection;
 
 @Component
 public class TailClientWrapHandler implements HeadClientWrapHandler {
