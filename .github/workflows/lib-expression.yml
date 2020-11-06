@@ -5,9 +5,9 @@ name: libexpression/*
 
 on:
   push:
-    branches: [ libexpression-* ]
+    branches: [ libexpression/* ]
   pull_request:
-    branches: [ libexpression-* ]
+    branches: [ libexpression/* ]
 
 jobs:
   build:
