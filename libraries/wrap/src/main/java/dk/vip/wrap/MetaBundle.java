@@ -3,6 +3,10 @@ package dk.vip.wrap;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * MetaBundles are made up of key value pairs in a map called properties which
+ * are transformed to and from JSON when used.
+ */
 public class MetaBundle {
     private final String name;
     private final Map<String, Object> properties;

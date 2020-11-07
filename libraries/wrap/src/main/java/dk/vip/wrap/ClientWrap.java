@@ -2,6 +2,12 @@ package dk.vip.wrap;
 
 import dk.vip.expression.Expression;
 
+/**
+ * A ClientWrap contains 2 parts. The expression, that is the commands that the
+ * user wants to use on the server. And then the "MetaCollection" which is a
+ * collection of meta data that is used to place the user the correct spot in
+ * the internal VIP.
+ */
 public class ClientWrap {
 
     private final Expression expression;
