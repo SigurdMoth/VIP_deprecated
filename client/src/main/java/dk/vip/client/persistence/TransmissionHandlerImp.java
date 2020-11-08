@@ -1,4 +1,4 @@
-package dk.vip.session.persistence;
+package dk.vip.client.persistence;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -7,9 +7,12 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse.BodyHandlers;
 
-import dk.vip.session.domain.transmit.HeadTransmissionHandler;
+import org.springframework.stereotype.Component;
 
-public class TailTransmissionHandler implements HeadTransmissionHandler {
+import dk.vip.client.domain.transmit.ITransmissionHandler;
+
+@Component
+public class TransmissionHandlerImp implements ITransmissionHandler {
 
     @Override
     public String transmit(String expressionJson) {
@@ -17,7 +20,7 @@ public class TailTransmissionHandler implements HeadTransmissionHandler {
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-        .uri(URI.create("http://localhost:8080/protocolbroker/post"))
+        .uri(URI.create("http://localhost:8080/session/post"))
         .POST(BodyPublishers.ofString(expressionJson)).build();
         client.sendAsync(request, BodyHandlers.ofString())
         .thenApply(HttpResponse::body)

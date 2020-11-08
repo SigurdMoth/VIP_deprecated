@@ -7,10 +7,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ProtocolbrokerController {
 
-    private IWrapHandler wrapHandler;
+    private IRouteHandler routeHandler;
 
-    @PostMapping("/protocolbroker/post")
-    public String receiveJSON(@RequestBody String request) {
-        return wrapHandler.handleWrap(request);
+    @PostMapping("/protocolbroker/handleRoute")
+    public String handleRoute(@RequestBody String request) {
+        return routeHandler.handleRoute(request);
+    }
+
+    @PostMapping("/protocolbroker/updateProtocolMap")
+    public String updateProtocolMap(@RequestBody String request) {
+        return routeHandler.updateProtocolMap(request);
     }
 }

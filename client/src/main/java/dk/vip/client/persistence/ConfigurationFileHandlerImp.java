@@ -10,10 +10,10 @@ import com.google.gson.Gson;
 import org.springframework.stereotype.Component;
 
 import dk.vip.client.domain.compute.configuration.ConfigurationModel;
-import dk.vip.client.domain.compute.configuration.HeadConfigurationFileHandler;
+import dk.vip.client.domain.compute.configuration.IConfigurationFileHandler;
 
 @Component
-public class TailConfigurationFileHandler implements HeadConfigurationFileHandler {
+public class ConfigurationFileHandlerImp implements IConfigurationFileHandler {
 
     @Override
     public boolean save(ConfigurationModel config) {

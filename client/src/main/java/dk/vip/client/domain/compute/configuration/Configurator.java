@@ -12,12 +12,12 @@ import dk.vip.client.domain.compute.configuration.models.UserConfiguration;
 @Component
 public class Configurator {
 
-    private final HeadConfigurationFileHandler fileHandler;
+    private final IConfigurationFileHandler fileHandler;
     // Configurationmodel = instance of a configuration file
     private final Map<Class, ConfigurationModel> configurationModels;
 
     @Autowired
-    private Configurator(HeadConfigurationFileHandler fileHandler) {
+    private Configurator(IConfigurationFileHandler fileHandler) {
         this.fileHandler = fileHandler;
         configurationModels = new HashMap<>();
         configurationModels.put(NetworkConfiguration.class, new NetworkConfiguration("cfgNetwork.json"));

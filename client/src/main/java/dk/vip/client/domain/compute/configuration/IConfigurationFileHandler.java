@@ -1,6 +1,6 @@
 package dk.vip.client.domain.compute.configuration;
 
-public interface HeadConfigurationFileHandler {
+public interface IConfigurationFileHandler {
 
     boolean save(ConfigurationModel config);
 

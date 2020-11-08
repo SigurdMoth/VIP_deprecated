@@ -1,6 +1,6 @@
 package dk.vip.client.presentation;
 
-public interface HeadExpressionHandler {
+public interface IExpressionHandler {
 
     /**
      * handleExpression takes an input from the CLI and decides what to do with the

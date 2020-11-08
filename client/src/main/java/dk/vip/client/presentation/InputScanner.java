@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class InputScanner implements IInputReader {
 
-    private HeadExpressionHandler expressionHandler;
+    private IExpressionHandler expressionHandler;
     private boolean isRunning;
     private Scanner scanner = new Scanner(System.in);
     
@@ -46,7 +46,7 @@ public class InputScanner implements IInputReader {
     }
 
     @Autowired
-    public void setStrategy(HeadExpressionHandler expressionHandler) {
+    public void setStrategy(IExpressionHandler expressionHandler) {
         this.expressionHandler = expressionHandler;
     }
 }

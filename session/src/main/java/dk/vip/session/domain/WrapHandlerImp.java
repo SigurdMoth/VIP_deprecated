@@ -10,22 +10,22 @@ import com.google.gson.JsonSyntaxException;
 import org.springframework.stereotype.Component;
 import dk.vip.session.domain.network.models.VipNetwork;
 import dk.vip.session.domain.network.models.VipNode;
-import dk.vip.session.presentation.HeadClientWrapHandler;
-import dk.vip.wrap.ClientWrap;
+import dk.vip.session.presentation.IWrapHandler;
 import dk.vip.wrap.MetaBundle;
 import dk.vip.wrap.MetaCollection;
+import dk.vip.wrap.Wrap;
 
 @Component
-public class TailClientWrapHandler implements HeadClientWrapHandler {
+public class WrapHandlerImp implements IWrapHandler {
 
-    Logger logger = Logger.getLogger(TailClientWrapHandler.class.getName());
+    Logger logger = Logger.getLogger(WrapHandlerImp.class.getName());
 
     public String handleClientWrap(String requestBody) {
         // Unwrap clientWrap
         Gson gson = new Gson();
-        ClientWrap clientWrap = null;
+        Wrap clientWrap = null;
         try {
-            clientWrap = gson.fromJson(requestBody, ClientWrap.class);
+            clientWrap = gson.fromJson(requestBody, Wrap.class);
         } catch (JsonSyntaxException e) {
             logger.log(Level.WARNING, "Failed to unwrap Json wrapper", e);
         }

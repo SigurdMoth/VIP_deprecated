@@ -1,6 +1,6 @@
 package dk.vip.client.domain.transmit;
 
-public interface HeadTransmissionHandler {
+public interface ITransmissionHandler {
 
     String transmit(String expression);
 }

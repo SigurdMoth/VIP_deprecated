@@ -6,17 +6,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class ClientWrapController {
+public class SessionController {
 
-    private HeadClientWrapHandler clientWrapHandler;
+    private IWrapHandler wrapHandler;
 
     @PostMapping("/session/post")
     public String receiveClientWrap(@RequestBody String request) {
-        return clientWrapHandler.handleClientWrap(request);
+        return wrapHandler.handleClientWrap(request);
     }
 
     @Autowired
-    public void setStrategy(HeadClientWrapHandler clientWrapHandler) {
-        this.clientWrapHandler = clientWrapHandler;
+    public void setStrategy(IWrapHandler wrapHandler) {
+        this.wrapHandler = wrapHandler;
     }
 }
