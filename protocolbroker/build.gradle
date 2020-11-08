@@ -23,9 +23,9 @@ publishing {
     publications { 
         myPublication(MavenPublication) { 
             groupId 'dk.vip' 
-            artifactId 'session' 
+            artifactId 'protocolbroker' 
             version '0.0.1' 
-            artifact './build/libs/session-0.0.1.jar' 
+            artifact './build/libs/protocolbroker-0.0.1.jar' 
         } 
     } 
 }
@@ -46,6 +46,7 @@ dependencies {
 	implementation 'com.google.code.gson:gson'
 	compile(group: 'dk.vip', name: 'wrap', version: '0.0.1e')
 	compile(group: 'dk.vip', name: 'expression', version: '0.0.2e')
+	compile(group: 'dk.vip', name: 'transmit', version: '0.0.1d')
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
