@@ -79,7 +79,7 @@ public class WrapHandlerImp implements IWrapHandler {
         // Inform VIP internal network of IP...etc.//
 
         // wrap && Redirect to Protocol broker
-        return transmissionHandler.handleTransmission(clientWrap, "http://localhost:8080/protocolbroker/handleRoute");
+        return transmissionHandler.handleTransmission(clientWrap, "http://localhost:8081/protocolbroker/handleRoute");
 
         /**
          * List<Network>

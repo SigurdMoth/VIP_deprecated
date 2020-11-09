@@ -16,7 +16,7 @@ public class HttpApplication implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		ProtocolPublisher protocol = new RestProtocolPublisher("http", "http://localhost:8081", "http://localhost:8080");
+		ProtocolPublisher protocol = new RestProtocolPublisher("http", "http://localhost:8082", "http://localhost:8081");
 		protocol.publish();
 	}
 
