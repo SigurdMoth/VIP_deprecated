@@ -7,7 +7,7 @@ plugins {
 }
 
 group = 'dk.vip'
-version = '0.0.1'
+version = '0.0.1g'
 sourceCompatibility = '11'
 
 publishing {
@@ -24,8 +24,8 @@ publishing {
         myPublication(MavenPublication) { 
             groupId 'dk.vip' 
             artifactId 'protocolbroker' 
-            version '0.0.1' 
-            artifact './build/libs/protocolbroker-0.0.1.jar' 
+            version "${version}"
+            artifact "./build/libs/protocolbroker-${version}.jar" 
         } 
     } 
 }
@@ -40,13 +40,20 @@ repositories {
         }
     }
 }
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'com.google.code.gson:gson'
 	compile(group: 'dk.vip', name: 'wrap', version: '0.0.1e')
 	compile(group: 'dk.vip', name: 'expression', version: '0.0.2e')
-	compile(group: 'dk.vip', name: 'transmit', version: '0.0.1d')
+	compile(group: 'dk.vip', name: 'transmit', version: '0.0.1f')
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}

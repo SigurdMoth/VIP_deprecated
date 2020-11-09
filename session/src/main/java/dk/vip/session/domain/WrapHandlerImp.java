@@ -7,9 +7,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import dk.vip.session.domain.network.models.VipNetwork;
 import dk.vip.session.domain.network.models.VipNode;
+import dk.vip.session.domain.transmit.ITransmissionHandler;
 import dk.vip.session.presentation.IWrapHandler;
 import dk.vip.wrap.MetaBundle;
 import dk.vip.wrap.MetaCollection;
@@ -17,8 +20,10 @@ import dk.vip.wrap.Wrap;
 
 @Component
 public class WrapHandlerImp implements IWrapHandler {
-
     Logger logger = Logger.getLogger(WrapHandlerImp.class.getName());
+
+    @Autowired
+    ITransmissionHandler transmissionHandler;
 
     public String handleClientWrap(String requestBody) {
         // Unwrap clientWrap
@@ -73,12 +78,8 @@ public class WrapHandlerImp implements IWrapHandler {
         }
         // Inform VIP internal network of IP...etc.//
 
-        // wrap
-        String wrappedJson = gson.toJson(clientWrap);
-
-        // Redirect to Protocol broker
-        
-        return wrappedJson;
+        // wrap && Redirect to Protocol broker
+        return transmissionHandler.handleTransmission(clientWrap, "http://localhost:8080/protocolbroker/handleRoute");
 
         /**
          * List<Network>

@@ -23,9 +23,9 @@ publishing {
     publications { 
         myPublication(MavenPublication) { 
             groupId 'dk.vip' 
-            artifactId 'session' 
-            version '0.0.1' 
-            artifact './build/libs/session-0.0.1.jar' 
+            artifactId 'http' 
+            version "${version}"
+            artifact "./build/libs/http-${version}.jar" 
         } 
     } 
 }
@@ -44,7 +44,7 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compile(group: 'dk.vip', name: 'wrap', version: '0.0.1e')
-	
+	compile(group: 'dk.vip', name: 'protocolbroker', version: '0.0.1g')
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}

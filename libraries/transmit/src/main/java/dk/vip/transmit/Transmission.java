@@ -12,28 +12,30 @@ import com.google.gson.Gson;
 import dk.vip.wrap.Wrap;
 
 public class Transmission {
-    /*
-     * public String transmit(String expressionJson) { String[] result = new
-     * String[1];
-     * 
-     * HttpClient client = HttpClient.newHttpClient(); HttpRequest request =
-     * HttpRequest.newBuilder().uri(URI.create(
-     * "http://localhost:8080/protocolbroker/post"))
-     * .POST(BodyPublishers.ofString(expressionJson)).build();
-     * client.sendAsync(request,
-     * BodyHandlers.ofString()).thenApply(HttpResponse::body).thenAccept(s ->
-     * result[0] = s) .join();
-     * 
-     * return result[0]; }
+    /**
+     * Must be used with a Wrap object that carries an expression and metabundles.
+     * @param wrap
+     * @param path
+     * @return
      */
     public String transmit(Wrap wrap, String path) {
         Gson gson = new Gson();
         String stringWrap = gson.toJson(wrap);
+        return transmit(stringWrap, path);
+    }
+
+    /**
+     * Here Wrap is replaced with a String wrapped, primarily for proxies.
+     * @param json
+     * @param path
+     * @return
+     */
+    public String transmit(String json, String path) {
         String[] result = new String[1];
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create("\"" + path + "\""))
-                .POST(BodyPublishers.ofString(stringWrap)).build();
+                .POST(BodyPublishers.ofString(json)).build();
         client.sendAsync(request, BodyHandlers.ofString()).thenApply(HttpResponse::body).thenAccept(s -> result[0] = s)
                 .join();
 

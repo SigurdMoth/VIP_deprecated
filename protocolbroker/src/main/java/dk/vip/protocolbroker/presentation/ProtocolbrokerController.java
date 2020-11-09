@@ -14,8 +14,8 @@ public class ProtocolbrokerController {
         return routeHandler.handleRoute(request);
     }
 
-    @PostMapping("/protocolbroker/updateProtocolMap")
-    public String updateProtocolMap(@RequestBody String request) {
-        return routeHandler.updateProtocolMap(request);
+    @PostMapping("/protocolbroker/publishProtocol")
+    public String publishProtocol(@RequestBody String request) {
+        return routeHandler.publishProtocol(request);
     }
 }
