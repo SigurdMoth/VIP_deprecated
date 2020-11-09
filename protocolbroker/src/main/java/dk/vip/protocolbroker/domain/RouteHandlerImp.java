@@ -39,6 +39,7 @@ public class RouteHandlerImp implements IRouteHandler {
         String protocolServicePath = "NotSet";
         if (protocolMap.containsKey(protocol)) {
             protocolServicePath = protocolMap.get(protocol);
+            
             return transmissionHandler.handleTransmission(sessionWrap, protocolServicePath);
         } else {// Else inform service is down
             logger.log(Level.WARNING, "Protocolservice: " + protocol
