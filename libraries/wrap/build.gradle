@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'dk.vip'
-version = '0.0.1e'
+version = '0.0.1f'
 sourceCompatibility = '11'
 
 publishing {

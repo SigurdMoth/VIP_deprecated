@@ -45,7 +45,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'com.google.code.gson:gson'
     compile(group: 'dk.vip', name: 'wrap', version: '0.0.1e')
-    compile(group: 'dk.vip', name: 'transmit', version: '0.0.1e')
+    compile(group: 'dk.vip', name: 'transmit', version: '0.0.1g')
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }

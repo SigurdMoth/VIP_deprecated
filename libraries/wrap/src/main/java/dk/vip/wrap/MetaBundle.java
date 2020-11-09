@@ -23,6 +23,9 @@ public class MetaBundle {
     public Map<String, Object> getProperties() {
         return properties;
     }
+    public Object get(String key){
+        return properties.get(key);
+    }
 
     public String getName() {
         return name;

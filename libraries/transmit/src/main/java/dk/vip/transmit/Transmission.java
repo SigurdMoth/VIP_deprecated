@@ -34,7 +34,7 @@ public class Transmission {
         String[] result = new String[1];
 
         HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create("\"" + path + "\""))
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(path))
                 .POST(BodyPublishers.ofString(json)).build();
         client.sendAsync(request, BodyHandlers.ofString()).thenApply(HttpResponse::body).thenAccept(s -> result[0] = s)
                 .join();

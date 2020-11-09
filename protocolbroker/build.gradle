@@ -7,7 +7,7 @@ plugins {
 }
 
 group = 'dk.vip'
-version = '0.0.1g'
+version = '0.0.1h'
 sourceCompatibility = '11'
 
 publishing {
@@ -53,7 +53,7 @@ dependencies {
 	implementation 'com.google.code.gson:gson'
 	compile(group: 'dk.vip', name: 'wrap', version: '0.0.1e')
 	compile(group: 'dk.vip', name: 'expression', version: '0.0.2e')
-	compile(group: 'dk.vip', name: 'transmit', version: '0.0.1f')
+	compile(group: 'dk.vip', name: 'transmit', version: '0.0.1g')
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}

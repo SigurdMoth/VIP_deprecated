@@ -10,11 +10,13 @@ import dk.vip.wrap.MetaBundle;
 public abstract class ProtocolPublisher implements Bundlable {
 
     protected final String name;
-    protected final String path;
+    protected final String sourcePath;
+    protected final String destinationPath;
 
-    public ProtocolPublisher(String name, String path) {
+    public ProtocolPublisher(String name, String sourcePath, String destinationPath) {
         this.name = name;
-        this.path = path;
+        this.sourcePath = sourcePath;
+        this.destinationPath = destinationPath;
     }
 
     public abstract void publish();
@@ -23,7 +25,8 @@ public abstract class ProtocolPublisher implements Bundlable {
     public MetaBundle bundle() {
         MetaBundle metaBundle = new MetaBundle("protocol");
         metaBundle.put("name", name);
-        metaBundle.put("address", path);
+        metaBundle.put("sourcepath", sourcePath);
+        metaBundle.put("destinationpath", destinationPath);
         return metaBundle;
     }
 }

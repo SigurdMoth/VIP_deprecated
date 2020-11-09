@@ -6,16 +6,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Service;
 import dk.vip.expression.Expression;
 import dk.vip.protocolbroker.presentation.IRouteHandler;
+import dk.vip.wrap.MetaBundle;
 import dk.vip.wrap.Wrap;
 
+@Service
 public class RouteHandlerImp implements IRouteHandler {
-
     Logger logger = Logger.getLogger(RouteHandlerImp.class.getName());
+
     @Autowired
     ITransmissionHandler transmissionHandler;
 
@@ -49,8 +50,19 @@ public class RouteHandlerImp implements IRouteHandler {
     @Override
     public String publishProtocol(String request) {
         // Convert request
+        try {
+            Gson gson = new Gson();
+            MetaBundle metaBundle = gson.fromJson(request, MetaBundle.class);
+            // add key:value to map (name:path)
+            String key = (String) metaBundle.getProperties().get("name");
+            String value = (String) metaBundle.getProperties().get("sourcepath");
+            String destinationPath = (String) metaBundle.getProperties().get("destinationpath");
+            protocolMap.put(key, value);
+            logger.log(Level.INFO, "Successfully added entry: " + key + " " + value + ", with destinationpath: " + destinationPath);
+        } catch (Exception e) {
+            return e.getMessage();
+        }
 
-        // add key:value to map (name:path)
-        return null;
+        return "200 OK";
     }
 }

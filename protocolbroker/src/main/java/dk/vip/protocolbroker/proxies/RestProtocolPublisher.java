@@ -6,15 +6,15 @@ import dk.vip.transmit.Transmission;
 
 public class RestProtocolPublisher extends ProtocolPublisher {
 
-    public RestProtocolPublisher(String name, String path) {
-        super(name, path);
+    public RestProtocolPublisher(String name, String sourcePath, String destinationPath) {
+        super(name, sourcePath, destinationPath);
     }
 
     @Override
     public void publish() {
         Transmission transmission = new Transmission();
         Gson gson = new Gson();
-        transmission.transmit(gson.toJson(this.bundle()), path + "/protocolbroker/publishProtocol");
+        transmission.transmit(gson.toJson(this.bundle()), destinationPath + "/protocolbroker/publishProtocol");
     }
 
 }
